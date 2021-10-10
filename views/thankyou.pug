@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	h1= 'Thank you for shopping with Pacific'
+	p= "Your purchase has been successfully processed."
+
+	table(style='width:100%', border='0')
+		for item in itemPurchased
+			tr
+				td= item.name
+				td= item.quantity
+				td= '$'+item.price
+		tr
+			th
+			th
+			td= '$'+totalCost

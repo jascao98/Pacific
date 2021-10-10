@@ -1,0 +1,69 @@
+extends layout
+
+block content
+
+	h1= title
+	p Welcome to #{title}
+
+	table(style='width:100%', border='0')
+	tr
+		th
+			<input type="text" id="searchBar" onkeyup="filterFunction2()" placeholder="Search for items.." title="Type in a name">
+			form(method='POST', action='', type='panel1')
+				div.form-group
+					table(style='width:100%', border='0', )
+						col(width='20%')
+						tr
+							th 
+								table(style='width:100%', border='1' id='itemTable', type ='itemTable')
+									col(width='1%')
+									tr(type='itemRows')
+										th Add To Cart
+										th Item
+										th Price
+										th Quantity
+										th Seller
+										th Type
+
+									each item in item_arr
+										tr(type='itemRows')
+											td
+												input.form-control(type='number', value= 0, name=item.name, min= 0 required='true')
+											td= item.name
+											td= '$'+item.price
+											td= item.quantity
+											td= item.seller
+											td= item.type
+
+					<div class="row">
+						<div class="col-50">
+							<h3>Enter Your Information</h3>
+							<label for="fname"><i class="fa fa-user"></i><b> First Name</b></label>
+							input(type='text', id='user_first_name', name='first_name' placeholder='John')
+							<label for="fname"><i class="fa fa-user"></i><b> Last Name</b></label>
+							input(type='text', id='user_last_name', name='last_name' placeholder='M. Doe')
+							<label for="adr"><i class="fa fa-address-card"></i><b> Enter your Address</b></label>
+							input(type='text', id='user_address', name='address' placeholder='542 W. 15th Street')
+							<label for="adr"><i class="fa fa-address-card" aria-hidden="true"></i><b> Enter Delivery Address</b></label>
+							input(type='text', id='user_delivery_address', name='delivery_address' placeholder='your delivery address')
+							<label for="city"><i class="fa fa-phone" aria-hidden="true"></i><b> Enter Phone Number</b></label>
+							input(type='text', id='phone_number', name='phone' placeholder='phone number: ###-####-###')
+							<label for="email"><i class="fa fa-envelope"></i><b> Email</b></label>
+							input(type='text', id='user_email', name='email' placeholder="john@example.com")
+					<div class="col-25">
+						<h3>Payment</h3>
+							<label for="fname"><b>Accepted Cards</b></label>
+							<div class="icon-container">
+								<i class="fa fa-cc-visa" aria-hidden="true" style="color:navy;"></i>
+								<i class="fa fa-cc-mastercard" aria-hidden="true" style="color:red;"></i>
+							</div>
+							<input type="radio" name="card_type" value="1" /><b>  Debit Card</b><br />
+							<input type="radio" name="card_type" value="2" /><b>  Credit Card</b><br />
+								<label for="ccnum"><b>Credit card number</b></label>
+								input(type='text', id='card_number_testing', name='card_number' placeholder='1111-2222-3333-4444')
+								<label for="expmonth"><b>Exp Date</b></label>
+								input(type='text', id='card_expiry_testing', name='card_expiry' placeholder='Enter Card Expiry Date')
+					</div>
+					input(type='submit', class = button)
+	script
+		include script.js
